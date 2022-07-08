@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CT | Home</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+    {% block content %}
+
+    {% for message in messages %}
+    <div class="bg-green-100 rounded-lg py-5 px-6 mb-4 text-base text-green-700 alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+        <div class="content text-center mt-[200px]">
+            <div class="greeting">
+            <H1 class="text-5xl font-semibold font-sans">Hello {{ name }}, Welcome to My Website</H1>
+            <H1 class="text-5xl font-semibold font-sans">Thanks for visiting!</H1>
+        </div>
+        <div class="accounts flex space-x-[70px] justify-center mt-7">
+            <div class="login">
+                <button class="rounded-lg w-[100px] h-[50px] bg-red-600 hover:bg-red-500" type="button"><a class="text-2xl text-white font-semibold" href="{% url 'signout' %}">Logout</a></button>
+            </div>
+        </div>
+
+        {% else %}
+        <div class="content text-center mt-[200px]">
+            <div class="greeting">
+                <H1 class="text-5xl font-semibold font-sans">Hello, Welcome to My Website</H1>
+            </div>
+            <div class="accounts flex space-x-[70px] justify-center mt-7">
+                <div class="login">
+                    <button class="rounded-lg w-[100px] h-[50px] bg-blue-600 hover:bg-blue-500" type="button"><a class="text-2xl text-white font-semibold" href="{% url 'signin' %}">Login</a></button>
+                </div>
+                <div class="signup">
+                    <button class="rounded-lg w-[100px] h-[50px] bg-green-600 hover:bg-green-500" type="button"><a class="text-2xl text-white font-semibold" href="{% url 'signup' %}">Sign Up</a></button>
+                </div>
+            </div>
+        {% endif %}
+
+    {% endblock content %}
+</body>
+</html>

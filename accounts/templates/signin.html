@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CT | Login</title>
+</head>
+<body>
+    {% for message in messages %}
+    <div class="bg-green-100 rounded-lg py-5 px-6 mb-4 text-base text-green-700 alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    <div class="signup_page bg-[rgb(237,238,240)] h-screen justify-center items-center flex">
+        <div id="signup_block" class=" w-[400px] h-[400px] bg-white shadow-xl rounded-md ">
+            <div class="text-center mt-7">
+                <span class=" text-2xl font-semibold text-green-500">LOGIN</span>
+            </div>
+            <div class="signup_items flex justify-center mt-5">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="username box-border border flex items-center w-[300px] rounded-lg h-[40px]">
+                        <input class="ml-2 w-[270px] h-[30px] outline-none" type="text" name="username" id="username" placeholder="Username">
+                    </div>
+
+                    <div class="password1 mt-4 box-border border flex items-center w-[300px] rounded-lg h-[40px]">
+                        <input class="ml-2 w-[270px] h-[30px] outline-none" type="password" name="password1" id="password1" placeholder="Password">
+                    </div>
+
+                    <div class="forgot_pass mt-2 font-sans ml-[50px]">
+                        <a class="underline ml-[120px] text-blue-500" href="">Forgot password?</a>
+                    </div>
+
+                    <button class=" mt-5 border flex items-center w-[300px] rounded-xl h-[40px] justify-center text-white font-semibold bg-green-600 hover:bg-green-500 shadow-2xl" type="submit">Login</button>
+                </form>
+            </div>
+                <div class="login_link mt-3 font-sans justify-center flex">
+                    <p>Not a member? <a class="underline text-blue-500" href="{% url 'signup' %}">Sign up now</a></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
